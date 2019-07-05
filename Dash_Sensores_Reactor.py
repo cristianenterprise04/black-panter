@@ -685,4 +685,4 @@ def delay(tab):
 #host = socket.gethostbyname(socket.gethostname())
 
 if __name__ == '__main__':
-    app.run_server(debug=True, use_reloader=True) ##host=host
+    app.run_server() ##host=host
