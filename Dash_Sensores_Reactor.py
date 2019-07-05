@@ -11,11 +11,11 @@ import numpy as np
 import random
 import socket
 
-#external_scripts = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js']
-#external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css']
+external_scripts = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js']
+external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css']
 
-#app = dash.Dash(__name__,external_scripts=external_scripts, external_stylesheets=external_stylesheets)
-app = dash.Dash(__name__)
+app = dash.Dash(__name__,external_scripts=external_scripts, external_stylesheets=external_stylesheets)
+#app = dash.Dash(__name__)
 
 
 #ARDUINO
