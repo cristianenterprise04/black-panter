@@ -15,7 +15,8 @@ import socket
 #external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css']
 
 #app = dash.Dash(__name__,external_scripts=external_scripts, external_stylesheets=external_stylesheets)
-app = dash.Dash(__name__)
+app = dash.Dash()
+server = app.server
 
 
 #ARDUINO
