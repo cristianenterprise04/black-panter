@@ -7,15 +7,13 @@ import serial
 import time
 from collections import deque
 import plotly.graph_objs as go
-import numpy as np
 import random
-import socket
 
-#external_scripts = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js']
-#external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css']
+external_scripts = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js']
+external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css']
 
-#app = dash.Dash(__name__,external_scripts=external_scripts, external_stylesheets=external_stylesheets)
-app = dash.Dash()
+app = dash.Dash(__name__,external_scripts=external_scripts, external_stylesheets=external_stylesheets)
+#app = dash.Dash()
 server = app.server
 
 
@@ -28,13 +26,6 @@ server = app.server
 ##arduino.flushInput()
 ##time.sleep(1)
 ##arduino.setDTR(True)
-
-
-# MODO LOCAL
-
-app.css.config.serve_locally=True
-app.scripts.config.serve_locally=True
-
 
 
 #TAMAÑO ARREGLOS
