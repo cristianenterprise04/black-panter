@@ -1,52 +1,50 @@
 import dash
+from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+import plotly
+import random
 import plotly.graph_objs as go
+from collections import deque
 
-########### Set up the chart
-beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
-ibu_values=[35, 60, 85, 75]
-abv_values=[5.4, 7.1, 9.2, 4.3]
-color1='lightblue'
-color2='darkgreen'
+X = deque(maxlen=20)
+X.append(1)
+Y = deque(maxlen=20)
+Y.append(1)
 
-bitterness = go.Bar(
-    x=beers,
-    y=ibu_values,
-    name='IBU',
-    marker={'color':color1}
-)
-alcohol = go.Bar(
-    x=beers,
-    y=abv_values,
-    name='ABV',
-    marker={'color':color2}
-)
-
-beer_data = [bitterness, alcohol]
-beer_layout = go.Layout(
-    barmode='group',
-    title = 'Beer Comparison'
-)
-
-beer_fig = go.Figure(data=beer_data, layout=beer_layout)
-
-########### Display the chart
 
 app = dash.Dash()
 server = app.server
 
-app.layout = html.Div(children=[
-    html.H1('Perdon bebe, te extraño'),
-    dcc.Graph(
-        id='flyingdog',
-        figure=beer_fig
-    ),
-    html.A('Code on Github', href='https://github.com/austinlasseter/flying-dog-beers'),
-    html.Br(),
-    html.A('Data Source', href='https://www.flyingdog.com/beers/'),
+app.scripts.config.serve_locally = True
+app.css.config.serve_locally = True
+app.layout = html.Div(
+    [
+        dcc.Graph(id='live-graph', animate=True),
+        dcc.Interval(
+            id='graph-update',
+            interval=1*1000,
+            n_intervals=0
+        ),
     ]
 )
+
+@app.callback(Output('live-graph', 'figure'),
+            [Input('graph-update', 'n_intervals')])
+def update_graph_scatter(n):
+    X.append(X[-1]+1)
+    Y.append(Y[-1]+Y[-1]*random.uniform(-0.1,0.1))
+
+    data = plotly.graph_objs.Scatter(
+            x=list(X),
+            y=list(Y),
+            name='Concentración Hidrogeno',
+            mode= 'lines+markers'
+            )
+
+    return {'data': [data],'layout' : go.Layout(xaxis=dict(range=[min(X),max(X)]),
+                                                yaxis=dict(range=[min(Y),max(Y)]),)}
+
 
 if __name__ == '__main__':
     app.run_server()
