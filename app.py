@@ -37,7 +37,7 @@ app = dash.Dash()
 server = app.server
 
 app.layout = html.Div(children=[
-    html.H1('Flying Dog Beers'),
+    html.H1('Perdon bebe, te extraño'),
     dcc.Graph(
         id='flyingdog',
         figure=beer_fig
