@@ -1,7 +1,7 @@
 import dash
-from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+from dash.dependencies import Input, Output
 import plotly
 import random
 import plotly.graph_objs as go
@@ -16,8 +16,6 @@ Y.append(1)
 app = dash.Dash()
 server = app.server
 
-app.scripts.config.serve_locally = True
-app.css.config.serve_locally = True
 app.layout = html.Div(
     [
         dcc.Graph(id='live-graph', animate=True),
